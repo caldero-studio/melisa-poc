@@ -2,6 +2,7 @@
   "chat.tools.terminal.autoApprove": {
     "npx @angular/cli": true,
     "npm install": true,
-    "true": true
+    "true": true,
+    "git remote": true
   }
 }
