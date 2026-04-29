@@ -2,32 +2,58 @@ import { Injectable, signal } from '@angular/core';
 
 export type Lang = 'es' | 'en';
 
+export interface ServiceItem {
+  title: string;
+  description: string;
+}
+
+export interface FooterContact {
+  phone: string;
+  instagram: string;
+  email: string;
+  location: string;
+}
+
 export interface Translations {
   nav: {
+    home: string;
     about: string;
     services: string;
+    workshops: string;
+    resources: string;
     contact: string;
+    cta: string;
     langToggle: string;
   };
   hero: {
-    greeting: string;
-    name: string;
-    slogan: string;
+    titlePart1: string;
+    titleAccent: string;
+    subtitle: string;
     cta: string;
   };
   about: {
     title: string;
     p1: string;
     p2: string;
+    cta: string;
   };
   services: {
     title: string;
     subtitle: string;
-    items: {
-      title: string;
-      description: string;
-    }[];
+    viewMore: string;
+    items: ServiceItem[];
   };
+  workshops: {
+    title: string;
+    subtitle: string;
+    comingSoon: string;
+  };
+  resources: {
+    title: string;
+    subtitle: string;
+    comingSoon: string;
+  };
+  quote: string;
   contact: {
     title: string;
     subtitle: string;
@@ -40,127 +66,182 @@ export interface Translations {
     successMessage: string;
   };
   footer: {
+    navTitle: string;
+    servicesTitle: string;
+    contactTitle: string;
+    contact: FooterContact;
     rights: string;
+    navLinks: string[];
+    serviceLinks: string[];
   };
 }
 
 const es: Translations = {
   nav: {
+    home: 'Inicio',
     about: 'Sobre mí',
     services: 'Servicios',
+    workshops: 'Talleres',
+    resources: 'Recursos',
     contact: 'Contacto',
+    cta: 'Agenda tu sesión',
     langToggle: 'EN',
   },
   hero: {
-    greeting: 'Hola, soy',
-    name: 'Melisa Caceres',
-    slogan: 'Sana tu cuerpo, despierta tu alma',
-    cta: 'Conoce mis servicios',
+    titlePart1: 'Un camino de autoconocimiento para',
+    titleAccent: 'volver a vos',
+    subtitle:
+      'Integro astrología y terapias holísticas para acompañarte a comprender tu historia, sanar y descubrir quién sos más allá de lo aprendido.',
+    cta: 'Conocé mis servicios',
   },
   about: {
     title: 'Sobre mí',
-    p1: 'Soy Melisa Caceres, terapeuta holística comprometida con acompañar a las personas en su camino de sanación y autoconocimiento. Combino distintas disciplinas para ofrecer un abordaje integral del ser.',
-    p2: 'Mi práctica une el mundo simbólico de la astrología, la sabiduría floral del Doctor Bach, la comprensión profunda de los patrones familiares y emocionales, y la guía del campo cuántico para que puedas vivir en mayor plenitud y coherencia.',
+    p1: 'Soy astróloga y terapeuta holística. Acompaño procesos de transformación desde una mirada integradora que une el cielo, las emociones, el cuerpo y el alma.',
+    p2: 'Creo en el poder de comprender nuestra historia para reconectar con nuestra esencia y vivir con más autenticidad.',
+    cta: 'Conocé mi historia',
   },
   services: {
-    title: 'Servicios',
-    subtitle:
-      'Cada encuentro es un espacio seguro y confidencial diseñado a tu medida.',
+    title: 'Mis servicios',
+    subtitle: 'Herramientas para comprender tu mapa, tu historia y tu alma.',
+    viewMore: 'Ver más',
     items: [
-      {
-        title: 'Terapia Holística',
-        description:
-          'Un acompañamiento integral que trabaja cuerpo, mente y espíritu para restaurar el equilibrio y potenciar tu bienestar.',
-      },
-      {
-        title: 'Lectura de Carta Natal',
-        description:
-          'Exploramos el mapa astrológico de tu nacimiento para comprender tus dones, desafíos y propósito de vida.',
-      },
-      {
-        title: 'Biodecodificación',
-        description:
-          'Decodificamos el mensaje simbólico detrás de los síntomas físicos y emocionales para liberar conflictos arraigados.',
-      },
       {
         title: 'Constelaciones Familiares',
         description:
-          'Visibilizamos y sanamos dinámicas inconscientes del sistema familiar que influyen en tu presente.',
+          'Sanar vínculos, comprender dinámicas familiares y liberar cargas que no te pertenecen para vivir con más libertad y plenitud.',
+      },
+      {
+        title: 'Biodescodificación',
+        description:
+          'Identificar el origen emocional de los síntomas para transformar desde la conciencia y activar tu capacidad innata de sanación.',
+      },
+      {
+        title: 'Astrología Transpersonal',
+        description:
+          'Tu carta natal como mapa del alma. Comprender tus talentos, desafíos y propósito para tomar decisiones más conscientes.',
       },
       {
         title: 'Flores de Bach',
         description:
-          'Preparados florales personalizados que actúan sobre los estados emocionales para recuperar la armonía interior.',
+          'Acompañamiento emocional a través de esencias florales para armonizar tus emociones y encontrar equilibrio.',
       },
     ],
   },
+  workshops: {
+    title: 'Talleres',
+    subtitle: 'Espacios grupales de aprendizaje y sanación.',
+    comingSoon: 'Próximamente...',
+  },
+  resources: {
+    title: 'Recursos',
+    subtitle: 'Materiales y herramientas para tu camino interior.',
+    comingSoon: 'Próximamente...',
+  },
+  quote: 'Todo lo que buscás afuera,\nya vive en tu interior.',
   contact: {
     title: 'Contacto',
     subtitle:
-      'Estoy aquí para acompañarte. Escríbeme y agendamos tu primera consulta.',
+      'Estoy aquí para acompañarte. Escribime y agendamos tu primera consulta.',
     namePlaceholder: 'Tu nombre',
     emailPlaceholder: 'Tu correo electrónico',
     messagePlaceholder: '¿En qué puedo acompañarte?',
     send: 'Enviar mensaje',
-    whatsapp: 'Escríbeme por WhatsApp',
-    instagram: 'Sígueme en Instagram',
+    whatsapp: 'Escribime por WhatsApp',
+    instagram: 'Seguime en Instagram',
     successMessage: '¡Mensaje enviado! Te responderé a la brevedad.',
   },
   footer: {
-    rights: '© 2026 Melisa Caceres · Todos los derechos reservados',
+    navTitle: 'Navegación',
+    servicesTitle: 'Servicios',
+    contactTitle: 'Contacto',
+    contact: {
+      phone: '+54 11 1234 5678',
+      instagram: '@tumapainterior',
+      email: 'hola@tumapainterior.com',
+      location: 'Argentina – Online',
+    },
+    rights: '© 2024 Tu Mapa Interior | Todos los derechos reservados',
+    navLinks: [
+      'Inicio',
+      'Sobre mí',
+      'Servicios',
+      'Talleres',
+      'Recursos',
+      'Contacto',
+    ],
+    serviceLinks: [
+      'Constelaciones Familiares',
+      'Biodescodificación',
+      'Astrología Transpersonal',
+      'Flores de Bach',
+      'Sesiones Online',
+      'Talleres y Círculos',
+    ],
   },
 };
 
 const en: Translations = {
   nav: {
+    home: 'Home',
     about: 'About',
     services: 'Services',
+    workshops: 'Workshops',
+    resources: 'Resources',
     contact: 'Contact',
+    cta: 'Book a session',
     langToggle: 'ES',
   },
   hero: {
-    greeting: "Hi, I'm",
-    name: 'Melisa Caceres',
-    slogan: 'Heal your body, awaken your soul',
+    titlePart1: 'A path of self-discovery to',
+    titleAccent: 'return to yourself',
+    subtitle:
+      'I integrate astrology and holistic therapies to help you understand your story, heal, and discover who you truly are beyond what you have been taught.',
     cta: 'Explore my services',
   },
   about: {
     title: 'About me',
-    p1: "I'm Melisa Caceres, a holistic therapist committed to walking alongside people on their path of healing and self-discovery. I combine different disciplines to offer an integral approach to the whole person.",
-    p2: 'My practice weaves together the symbolic world of astrology, the floral wisdom of Dr. Bach, a deep understanding of family and emotional patterns, and quantum-field guidance — so you can live with greater wholeness and coherence.',
+    p1: "I'm an astrologer and holistic therapist. I accompany transformation processes from an integrative perspective that unites the sky, emotions, body and soul.",
+    p2: 'I believe in the power of understanding our story to reconnect with our essence and live more authentically.',
+    cta: 'Learn my story',
   },
   services: {
-    title: 'Services',
-    subtitle:
-      'Every session is a safe, confidential space designed around you.',
+    title: 'My services',
+    subtitle: 'Tools to understand your map, your story and your soul.',
+    viewMore: 'Learn more',
     items: [
       {
-        title: 'Holistic Therapy',
+        title: 'Family Constellations',
         description:
-          'A comprehensive approach working with body, mind and spirit to restore balance and enhance your overall wellbeing.',
-      },
-      {
-        title: 'Natal Chart Reading',
-        description:
-          'We explore the astrological map of your birth to understand your gifts, challenges and life purpose.',
+          'Healing bonds, understanding family dynamics and releasing burdens that are not yours to carry, to live with more freedom and fullness.',
       },
       {
         title: 'Biodecoding',
         description:
-          'We decode the symbolic message behind physical and emotional symptoms to release deep-rooted conflicts.',
+          'Identifying the emotional origin of symptoms to transform from awareness and activate your innate healing capacity.',
       },
       {
-        title: 'Family Constellations',
+        title: 'Transpersonal Astrology',
         description:
-          'We make visible and heal unconscious dynamics in the family system that influence your present life.',
+          'Your birth chart as a map of the soul. Understanding your talents, challenges and purpose to make more conscious decisions.',
       },
       {
         title: 'Bach Flower Remedies',
         description:
-          'Personalised floral preparations that act on emotional states to restore inner harmony.',
+          'Emotional support through floral essences to harmonise your emotions and find balance.',
       },
     ],
   },
+  workshops: {
+    title: 'Workshops',
+    subtitle: 'Group spaces for learning and healing.',
+    comingSoon: 'Coming soon...',
+  },
+  resources: {
+    title: 'Resources',
+    subtitle: 'Materials and tools for your inner journey.',
+    comingSoon: 'Coming soon...',
+  },
+  quote: 'Everything you seek outside\nalready lives within you.',
   contact: {
     title: 'Contact',
     subtitle:
@@ -174,7 +255,32 @@ const en: Translations = {
     successMessage: 'Message sent! I will get back to you shortly.',
   },
   footer: {
-    rights: '© 2026 Melisa Caceres · All rights reserved',
+    navTitle: 'Navigation',
+    servicesTitle: 'Services',
+    contactTitle: 'Contact',
+    contact: {
+      phone: '+54 11 1234 5678',
+      instagram: '@tumapainterior',
+      email: 'hola@tumapainterior.com',
+      location: 'Argentina – Online',
+    },
+    rights: '© 2024 Tu Mapa Interior | All rights reserved',
+    navLinks: [
+      'Home',
+      'About',
+      'Services',
+      'Workshops',
+      'Resources',
+      'Contact',
+    ],
+    serviceLinks: [
+      'Family Constellations',
+      'Biodecoding',
+      'Transpersonal Astrology',
+      'Bach Flower Remedies',
+      'Online Sessions',
+      'Workshops & Circles',
+    ],
   },
 };
 

@@ -1,30 +1,33 @@
 // ─────────────────────────────────────────────
-// Design tokens
+// Design tokens — Tu Mapa Interior
 // ─────────────────────────────────────────────
 :root {
   // Colors
-  --color-bg: #faf8fd;
-  --color-bg-alt: #f3eef8;
-  --color-primary: #7c5cbf;
-  --color-primary-light: #a98dd6;
-  --color-primary-dark: #5a3d99;
-  --color-accent: #c9a8e8;
-  --color-text: #2d2040;
-  --color-text-muted: #7a6b8a;
+  --color-bg: #f7e9ee;
+  --color-bg-alt: #f2ede9;
+  --color-primary: #e8b7c8;
+  --color-primary-light: #f0cdd8;
+  --color-primary-dark: #c9909f;
+  --color-accent: #dfa3b2;
+  --color-gold: #cfaf7b;
+  --color-text: #6e6a6b;
+  --color-text-muted: #bfb8ba;
+  --color-text-dark: #4a3d40;
   --color-white: #ffffff;
-  --color-border: #e0d4f0;
+  --color-border: #e8d5db;
 
   // Typography
-  --font-heading: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Lato', system-ui, sans-serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
 
   // Spacing
   --section-padding: 6rem 1.5rem;
   --max-width: 1100px;
 
   // Border radius
-  --radius: 8px;
-  --radius-lg: 16px;
+  --radius: 25px;
+  --radius-card: 16px;
+  --radius-sm: 8px;
 
   // Transitions
   --transition: 0.3s ease;
@@ -48,7 +51,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-bg);
+  background-color: var(--color-white);
   color: var(--color-text);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
@@ -62,23 +65,25 @@ h2,
 h3,
 h4 {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.2;
+  color: var(--color-text-dark);
 }
 
 h1 {
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-size: clamp(2.2rem, 5.5vw, 4rem);
 }
 h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
 }
 h3 {
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
 }
 
 p {
   font-size: 1rem;
-  color: var(--color-text-muted);
+  color: var(--color-text);
+  font-weight: 300;
 }
 
 a {
@@ -105,45 +110,54 @@ img {
 }
 
 .section--alt {
+  background-color: var(--color-bg);
+}
+
+.section--beige {
   background-color: var(--color-bg-alt);
 }
 
 .btn {
   display: inline-block;
-  padding: 0.8rem 2.2rem;
-  border: 1px solid var(--color-primary);
+  padding: 12px 24px;
+  border: none;
   border-radius: var(--radius);
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
   transition:
     background-color var(--transition),
-    color var(--transition);
-  background: transparent;
-  color: var(--color-primary);
+    transform var(--transition),
+    box-shadow var(--transition);
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  text-decoration: none;
 
   &:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(223, 163, 178, 0.35);
   }
 
-  &--filled {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+  &--outline {
+    background: transparent;
+    border: 1.5px solid var(--color-accent);
+    color: var(--color-accent);
 
     &:hover {
-      background-color: var(--color-primary-dark);
-      border-color: var(--color-primary-dark);
+      background-color: var(--color-accent);
+      color: var(--color-white);
     }
   }
 }
 
 .divider {
   width: 48px;
-  height: 2px;
-  background: var(--color-accent);
+  height: 1.5px;
+  background: var(--color-gold);
   margin: 1rem auto 2rem;
   border: none;
 }
@@ -151,12 +165,14 @@ img {
 .section-title {
   text-align: center;
   margin-bottom: 0.5rem;
+  color: var(--color-text-dark);
 }
 
 .section-subtitle {
   text-align: center;
-  font-size: 1.05rem;
-  color: var(--color-text-muted);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-text);
   max-width: 560px;
   margin-inline: auto;
 }

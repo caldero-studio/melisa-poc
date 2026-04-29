@@ -7,7 +7,7 @@ import { TranslationService } from '../../services/translation.service';
   standalone: true,
   imports: [FormsModule],
   template: `
-    <section id="contact" class="section section--alt contact">
+    <section id="contact" class="section contact">
       <div class="container contact-inner">
         <div class="contact-info">
           <h2 class="section-title" style="text-align:left">
@@ -93,11 +93,7 @@ import { TranslationService } from '../../services/translation.service';
                 [placeholder]="t().contact.messagePlaceholder"
               ></textarea>
             </div>
-            <button
-              type="submit"
-              class="btn btn--filled"
-              [disabled]="contactForm.invalid"
-            >
+            <button type="submit" class="btn" [disabled]="contactForm.invalid">
               {{ t().contact.send }}
             </button>
           } @else {
@@ -112,6 +108,10 @@ import { TranslationService } from '../../services/translation.service';
   `,
   styles: [
     `
+      .contact {
+        background-color: var(--color-bg-alt);
+      }
+
       .contact-inner {
         display: grid;
         grid-template-columns: 1fr 1.2fr;
@@ -132,17 +132,16 @@ import { TranslationService } from '../../services/translation.service';
         font-size: 0.9rem;
         padding: 0.8rem 1.2rem;
         border-radius: var(--radius);
-        border: 1px solid var(--color-border);
+        border: 1.5px solid var(--color-border);
         background: var(--color-white);
         transition:
           border-color 0.2s,
-          color 0.2s,
-          background-color 0.2s;
+          color 0.2s;
         color: var(--color-text);
 
         &:hover {
-          border-color: var(--color-primary);
-          color: var(--color-primary);
+          border-color: var(--color-accent);
+          color: var(--color-accent);
         }
       }
 
@@ -156,10 +155,11 @@ import { TranslationService } from '../../services/translation.service';
       .form-group textarea {
         width: 100%;
         padding: 0.85rem 1rem;
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius);
+        border: 1.5px solid var(--color-border);
+        border-radius: var(--radius-sm);
         font-family: var(--font-body);
         font-size: 0.95rem;
+        font-weight: 300;
         background: var(--color-white);
         color: var(--color-text);
         transition: border-color 0.2s;
@@ -167,12 +167,11 @@ import { TranslationService } from '../../services/translation.service';
 
         &::placeholder {
           color: var(--color-text-muted);
-          opacity: 0.7;
         }
 
         &:focus {
           outline: none;
-          border-color: var(--color-primary-light);
+          border-color: var(--color-accent);
         }
       }
 
@@ -184,12 +183,12 @@ import { TranslationService } from '../../services/translation.service';
         padding: 3rem 2rem;
         text-align: center;
         background: var(--color-white);
-        border-radius: var(--radius-lg);
+        border-radius: var(--radius-card);
         border: 1px solid var(--color-border);
 
         .success-icon {
           font-size: 2rem;
-          color: var(--color-primary);
+          color: var(--color-accent);
         }
 
         p {

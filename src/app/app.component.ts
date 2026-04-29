@@ -5,6 +5,9 @@ import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { QuoteBandComponent } from './components/quote-band/quote-band.component';
+import { TalleresComponent } from './components/talleres/talleres.component';
+import { RecursosComponent } from './components/recursos/recursos.component';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +15,11 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     NavbarComponent,
     HeroComponent,
-    AboutComponent,
     ServicesComponent,
+    AboutComponent,
+    QuoteBandComponent,
+    TalleresComponent,
+    RecursosComponent,
     ContactComponent,
     FooterComponent,
   ],
@@ -21,8 +27,11 @@ import { FooterComponent } from './components/footer/footer.component';
     <app-navbar />
     <main>
       <app-hero />
-      <app-about />
       <app-services />
+      <app-about />
+      <app-quote-band />
+      <app-talleres />
+      <app-recursos />
       <app-contact />
     </main>
     <app-footer />
@@ -30,7 +39,7 @@ import { FooterComponent } from './components/footer/footer.component';
   styles: [
     `
       main {
-        padding-top: 0; /* sections handle their own spacing */
+        padding-top: 0;
       }
     `,
   ],

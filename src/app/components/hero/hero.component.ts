@@ -5,146 +5,174 @@ import { TranslationService } from '../../services/translation.service';
   selector: 'app-hero',
   standalone: true,
   template: `
-    <section id="hero" class="hero">
-      <div class="hero-overlay"></div>
-      <div class="container hero-content">
-        <p class="hero-greeting">{{ t().hero.greeting }}</p>
-        <h1 class="hero-name">{{ t().hero.name }}</h1>
-        <p class="hero-slogan">{{ t().hero.slogan }}</p>
-        <a href="#services" class="btn btn--filled">{{ t().hero.cta }}</a>
+    <section id="hero" class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            {{ t().hero.titlePart1 }}<br />
+            <span class="hero-accent">{{ t().hero.titleAccent }}</span>
+          </h1>
+          <div class="hero-divider"></div>
+          <p class="hero-subtitle">{{ t().hero.subtitle }}</p>
+          <a href="#services" class="btn">{{ t().hero.cta }}</a>
+        </div>
+        <div class="hero-image">
+          <div class="hero-img-wrapper">
+            <img
+              src="hero.jpg"
+              alt="Carta natal y cristales"
+              class="hero-img"
+              onerror="this.style.display='none'; this.parentElement.classList.add('hero-img-placeholder')"
+            />
+            <div class="hero-img-decoration"></div>
+          </div>
+        </div>
       </div>
-      <div class="hero-scroll-hint" aria-hidden="true">
-        <span></span>
-      </div>
+      <!-- decorative stars -->
+      <span class="deco deco-1" aria-hidden="true">✦</span>
+      <span class="deco deco-2" aria-hidden="true">✦</span>
     </section>
   `,
   styles: [
     `
       .hero {
+        background-color: var(--color-bg);
+        padding-top: calc(6rem + 70px);
         position: relative;
-        min-height: 100svh;
-        display: flex;
+        overflow: hidden;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         align-items: center;
+        gap: 3rem;
+      }
+
+      .hero-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        line-height: 1.15;
+        color: var(--color-text-dark);
+        font-weight: 500;
+      }
+
+      .hero-accent {
+        color: var(--color-accent);
+        font-style: italic;
+      }
+
+      .hero-divider {
+        width: 60px;
+        height: 1.5px;
+        background: var(--color-gold);
+        margin: 0;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--color-text);
+        max-width: 420px;
+        line-height: 1.75;
+      }
+
+      /* Hero image */
+      .hero-image {
+        display: flex;
         justify-content: center;
+        align-items: center;
+      }
+
+      .hero-img-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 440px;
+        aspect-ratio: 4/3;
+        border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
         overflow: hidden;
         background: linear-gradient(
           135deg,
-          #e8dff5 0%,
-          #f3eef8 40%,
-          #ddd2f0 100%
+          #f0cdd8 0%,
+          #e8b7c8 50%,
+          #cfaf7b22 100%
         );
-      }
+        box-shadow: 0 20px 50px rgba(232, 183, 200, 0.4);
 
-      /* Decorative blurred circles */
-      .hero::before {
-        content: '';
-        position: absolute;
-        width: 520px;
-        height: 520px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(169, 141, 214, 0.35) 0%,
-          transparent 70%
-        );
-        top: -100px;
-        right: -100px;
-        pointer-events: none;
-      }
-
-      .hero::after {
-        content: '';
-        position: absolute;
-        width: 380px;
-        height: 380px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(124, 92, 191, 0.18) 0%,
-          transparent 70%
-        );
-        bottom: -80px;
-        left: -80px;
-        pointer-events: none;
-      }
-
-      .hero-overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(250, 248, 253, 0.15);
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.2rem;
-      }
-
-      .hero-greeting {
-        font-size: 1rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--color-primary);
-        font-family: var(--font-body);
-      }
-
-      .hero-name {
-        color: var(--color-primary-dark);
-        font-style: italic;
-        letter-spacing: 0.02em;
-      }
-
-      .hero-slogan {
-        font-family: var(--font-heading);
-        font-size: clamp(1.1rem, 3vw, 1.5rem);
-        font-style: italic;
-        color: var(--color-text-muted);
-        max-width: 480px;
-      }
-
-      /* Scroll hint animation */
-      .hero-scroll-hint {
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-
-        span {
-          display: block;
-          width: 20px;
-          height: 30px;
-          border: 2px solid var(--color-primary-light);
-          border-radius: 10px;
-          position: relative;
-
+        &.hero-img-placeholder {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           &::after {
-            content: '';
-            position: absolute;
-            top: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 6px;
-            border-radius: 2px;
-            background: var(--color-primary-light);
-            animation: scrollBob 1.6s infinite;
+            content: '☽';
+            font-size: 6rem;
+            color: rgba(255, 255, 255, 0.5);
           }
         }
       }
 
-      @keyframes scrollBob {
-        0%,
-        100% {
-          top: 5px;
-          opacity: 1;
+      .hero-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .hero-img-decoration {
+        position: absolute;
+        inset: -8px;
+        border-radius: inherit;
+        border: 1.5px solid rgba(207, 175, 123, 0.4);
+        pointer-events: none;
+      }
+
+      /* Decorative stars */
+      .deco {
+        position: absolute;
+        color: var(--color-gold);
+        font-size: 1.2rem;
+        opacity: 0.6;
+        pointer-events: none;
+      }
+
+      .deco-1 {
+        top: 15%;
+        left: 48%;
+      }
+      .deco-2 {
+        bottom: 20%;
+        right: 5%;
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: 768px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
         }
-        60% {
-          top: 13px;
-          opacity: 0.3;
+
+        .hero-text {
+          align-items: center;
+          order: 1;
+        }
+
+        .hero-image {
+          order: 2;
+        }
+
+        .hero-subtitle {
+          text-align: center;
+        }
+
+        .hero-img-wrapper {
+          max-width: 280px;
+          aspect-ratio: 1;
         }
       }
     `,
